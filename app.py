@@ -6,7 +6,7 @@ import zipfile
 
 @st.cache_resource
 def load_model():
-    FOLDER_ID = "1AbCdEfGHiJKLmNoPQrsTUvwXYZ"
+    FOLDER_ID = "1EmbUNvE7Y7IwqPFwrqEyFqdlvpJ7bo-i"
 
     ZIP_FILE = "model.zip"
     MODEL_DIR = "apple_mango_model"
