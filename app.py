@@ -13,7 +13,7 @@ st.write("Upload an image of a fruit and the model will tell whether it's an app
 # === Replace with your Google Drive MODEL FILE ID ===
 # Example link: https://drive.google.com/file/d/1AbCDEFgHij12345/view?usp=sharing
 # Then FILE_ID = "1AbCDEFgHij12345"
-FILE_ID = "1upR2UNZEaBl4CuoW4WmyYDmxESK178Q9"
+FILE_ID = "1ABCDefGhijkLMNOPqrStuVWXYZ12"
 MODEL_FILE = "apple_mango_model.h5"
 
 @st.cache_resource
