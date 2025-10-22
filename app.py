@@ -10,14 +10,17 @@ st.set_page_config(page_title="Apple vs Mango Classifier", layout="centered")
 st.title("🍎 Apple vs 🥭 Mango — Image Classifier")
 st.write("Upload an image of a fruit and the model will tell whether it's an apple or a mango.")
 
-# === Google Drive Download ===
-FILE_ID = "YOUR_FILE_ID_HERE"  # replace this with your model file ID
+# === Replace with your Google Drive MODEL FILE ID ===
+# Example link: https://drive.google.com/file/d/1AbCDEFgHij12345/view?usp=sharing
+# Then FILE_ID = "1AbCDEFgHij12345"
+FILE_ID = "17JSf9QRzITDOE9sPxXpE1DWwoiUbzR4M?usp=drive_link"
 MODEL_FILE = "apple_mango_model.h5"
 
 @st.cache_resource
 def load_model():
     if not os.path.exists(MODEL_FILE):
-        gdown.download(f"https://drive.google.com/uc?id={FILE_ID}", MODEL_FILE, quiet=False)
+        st.info("Downloading model from Google Drive...")
+        gdown.download(f"https://drive.google.com/uc?id="{17JSf9QRzITDOE9sPxXpE1DWwoiUbzR4M?usp=drive_link}", MODEL_FILE, quiet=False)
     model = tf.keras.models.load_model(MODEL_FILE)
     return model
 
