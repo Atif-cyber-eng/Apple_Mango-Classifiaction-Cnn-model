@@ -3,23 +3,26 @@ import tensorflow as tf
 import numpy as np
 from PIL import Image
 import io
+import gdown
+import os
 
 st.set_page_config(page_title="Apple vs Mango Classifier", layout="centered")
-
 st.title("🍎 Apple vs 🥭 Mango — Image Classifier")
 st.write("Upload an image of a fruit and the model will tell whether it's an apple or a mango.")
 
-# Path to model - for deployment, place model in same repo or load from a path
-MODEL_PATH = "model_saved"  # change to the folder name you will use in deployment
+# === Google Drive Download ===
+FILE_ID = "YOUR_FILE_ID_HERE"  # replace this with your model file ID
+MODEL_FILE = "apple_mango_model.h5"
 
 @st.cache_resource
 def load_model():
-    model = tf.keras.models.load_model(MODEL_PATH)
+    if not os.path.exists(MODEL_FILE):
+        gdown.download(f"https://drive.google.com/uc?id={FILE_ID}", MODEL_FILE, quiet=False)
+    model = tf.keras.models.load_model(MODEL_FILE)
     return model
 
 model = load_model()
 
-# Helper: preprocess uploaded image
 IMG_SIZE = (160, 160)
 
 def preprocess_image(img: Image.Image):
@@ -37,8 +40,6 @@ if uploaded_file is not None:
         x = preprocess_image(image)
         prob = model.predict(x)[0][0]
         label_index = 1 if prob > 0.5 else 0
-        # NOTE: change class names depending on model.class_names / training folder order
-        # We assume training class order is: ['apple_train','mango_train']
         class_names = ['apple', 'mango']
         st.write(f"**Prediction:** {class_names[label_index]}")
         st.write(f"**Confidence:** {prob:.3f}" if label_index==1 else f"**Confidence:** {1-prob:.3f}")
