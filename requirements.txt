@@ -2,4 +2,4 @@ streamlit
 tensorflow==2.20.0
 pillow
 numpy
-scikit-learn
+gdown
