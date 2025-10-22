@@ -17,12 +17,14 @@ FILE_ID = "1upR2UNZEaBl4CuoW4WmyYDmxESK178Q9"
 MODEL_FILE = "apple_mango_model.h5"
 
 @st.cache_resource
+@st.cache_resource
 def load_model():
     if not os.path.exists(MODEL_FILE):
         st.info("Downloading model from Google Drive...")
-        gdown.download(f"https://drive.google.com/uc?id="{FILE_ID}", MODEL_FILE, quiet=False)
+        gdown.download(f"https://drive.google.com/uc?id={FILE_ID}", MODEL_FILE, quiet=False)
     model = tf.keras.models.load_model(MODEL_FILE)
     return model
+
 
 model = load_model()
 
